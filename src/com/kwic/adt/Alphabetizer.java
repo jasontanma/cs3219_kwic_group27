@@ -33,7 +33,7 @@ public class Alphabetizer {
         a.add(new Lines(new String[]{"Gold", "and", "Silver"}));
         a.add(new Lines(new String[]{"a", "an", "the"}));
 
-        IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a));
+        IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a).circulate());
         ArrayList<String> ignoredWords = new ArrayList<String>();
         ignoredWords.add("all");
         ignoredWords.add("hard");

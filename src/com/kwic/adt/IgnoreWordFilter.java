@@ -1,28 +1,26 @@
 package com.kwic.adt;
 
 import com.kwic.shared.Lines;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import java.util.ArrayList;
 /**
  * Created by MA on 2016/08/20.
  */
 public class IgnoreWordFilter {
-    private CircularShift circularShift;
+    private ArrayList<Lines> circulatedLines;
 
-    public IgnoreWordFilter(CircularShift circularShift) {
-        this.circularShift = circularShift;
+    public IgnoreWordFilter(ArrayList<Lines> circulatedLines) {
+        this.circulatedLines = circulatedLines;
     }
 
     public ArrayList<Lines> filterIgnoredWords(ArrayList<String> ignoredWords) {
-        ArrayList<Lines> circulatedWords = circularShift.circulate();
-        for(int i = 0; i < circulatedWords.size(); ++i) {
-            if(ignoredWords.contains(circulatedWords.get(i).getWord(0))) {
-                circulatedWords.remove(i);
-                --i;
+        ArrayList<Lines> filteredLines = new ArrayList<Lines>();
+        for(int i = 0; i < circulatedLines.size(); ++i) {
+            if(!ignoredWords.contains(circulatedLines.get(i).getWord(0))) {
+                filteredLines.add(circulatedLines.get(i).copy());
             }
         }
-        return circulatedWords;
+        return filteredLines;
     }
 
 
@@ -34,7 +32,7 @@ public class IgnoreWordFilter {
         a.add(new Lines(new String[]{"Gold", "and", "Silver"}));
         a.add(new Lines(new String[]{"a", "an", "the"}));
 
-        IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a));
+        IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a).circulate());
         ArrayList<String> ignoredWords = new ArrayList<String>();
         ignoredWords.add("all");
         ignoredWords.add("hard");
