@@ -2,6 +2,9 @@ package com.kwic.shared;
 
 import java.util.ArrayList;
 
+/**
+ * Created by kylel on 20/8/2016.
+ */
 public class Output {
 
     private static final String OUTPUT_DISPLAY_MESSAGE = "Generated KWIC index:";

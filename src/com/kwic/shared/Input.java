@@ -3,6 +3,9 @@ package com.kwic.shared;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Created by kylel on 20/8/2016.
+ */
 public class Input {
 
     private static final String WELCOME_MESSAGE = "Welcome to KWIC Index Generator";
@@ -45,7 +48,7 @@ public class Input {
 
         while(sc.hasNextLine()) {
             inputLine = sc.nextLine();
-            if(inputLine.equals(EMPTY_STRING)) {
+            if(inputLine.equals(EMPTY_STRING) || inputLine.trim().length() == 0) {
                 break;
             } else {
                 line = convertStringArrayToArrayList(inputLine.split(SPACE_REGEX));
@@ -71,7 +74,7 @@ public class Input {
 
         while(sc.hasNextLine()) {
             inputWord = sc.nextLine();
-            if(inputWord.equals(EMPTY_STRING)) {
+            if(inputWord.equals(EMPTY_STRING) || inputWord.trim().length() == 0) {
                 break;
             } else {
                 ignoredWords.add(inputWord.trim());

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Created by kylel on 20/8/2016.
+ */
 public class Lines {
 
     private ArrayList<String> words;
