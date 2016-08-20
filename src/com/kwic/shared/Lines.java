@@ -2,6 +2,7 @@ package com.kwic.shared;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Lines {
 
@@ -62,6 +63,7 @@ public class Lines {
         }
         return line;
     }
+
     public int getLength() { return this.words.size(); }
 
     public Lines copy() {
@@ -90,5 +92,12 @@ public class Lines {
 
         this.words.remove(wordIndex);
         this.words.add(wordIndex, newWord);
+    }
+
+    public static class LinesComparator implements Comparator<Lines> {
+        @Override
+        public int compare(Lines line1, Lines line2) {
+            return line1.toString().compareToIgnoreCase(line2.toString());
+        }
     }
 }
