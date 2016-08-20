@@ -2,39 +2,39 @@ package com.kwic.adt;
 
 
 import com.kwic.shared.Lines;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.*;
 
 /**
  * Created by MA on 2016/08/20.
  */
 public class Alphabetizer {
-    ArrayList<Lines> lines;
+    private ArrayList<Lines> lines;
 
     public Alphabetizer(ArrayList<Lines> lines) {
         this.lines = (ArrayList<Lines>) lines.clone();
     }
 
-    public String[] sort() {
-        String[] outputStr = new String[lines.size()];
-        for(int i = 0; i < lines.size(); ++i) {
-            outputStr[i] = lines.get(i).toString();
+    public ArrayList<String> sort() {
+        Collections.sort(lines, new Lines.LinesComparator());
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        for(Lines line : lines) {
+            stringArrayList.add(line.toString());
         }
-        Arrays.sort(outputStr);
-        return outputStr;
+
+        return stringArrayList;
     }
 
-
     public static void main(String[] args) {
-        ArrayList<Lines> a = new ArrayList<Lines>();
+        ArrayList<Lines> a = new ArrayList<>();
         a.add(new Lines(new String[]{"working", "very", "hard"}));
-        a.add(new Lines(new String[]{"sleep", "all", "day"}));
+         a.add(new Lines(new String[]{"sleep", "all", "day"}));
         a.add(new Lines(new String[]{"Today", "after", "tomorrow"}));
         a.add(new Lines(new String[]{"Gold", "and", "Silver"}));
         a.add(new Lines(new String[]{"a", "an", "the"}));
 
         IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a).circulate());
-        ArrayList<String> ignoredWords = new ArrayList<String>();
+        ArrayList<String> ignoredWords = new ArrayList<>();
         ignoredWords.add("all");
         ignoredWords.add("hard");
         ignoredWords.add("a");
@@ -44,9 +44,9 @@ public class Alphabetizer {
         ignoredWords.add("the");
         ArrayList<Lines> c = b.filterIgnoredWords(ignoredWords);
         Alphabetizer d = new Alphabetizer(c);
-        String[] e = d.sort();
-        for(int i = 0; i < e.length; ++i) {
-            System.out.println(i + " " + e[i]);
+        ArrayList<String> e = d.sort();
+        for(int i = 0; i < e.size(); ++i) {
+            System.out.println(i + " " + e.get(i));
         }
 
     }
