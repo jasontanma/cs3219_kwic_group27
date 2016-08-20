@@ -1,6 +1,7 @@
 package com.kwic.shared;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Lines {
 
@@ -13,21 +14,36 @@ public class Lines {
         testString.add("test");
         testString.add("String");
         Lines test = new Lines(testString);
-
+        Lines test2 = new Lines(testString);
+        System.out.println(test.equals(test2));
+        testString.add("String1");
+        Lines test3 = new Lines(testString);
+        System.out.println(test.equals(test3));
         System.out.println(test.getWord(0));
         System.out.println(test.getChar(0, 0));
         System.out.println(test);
-        
+        System.out.println(new Lines(new String[] {"a","a","s"}));
         test.setChar(1, 0, 's');
         System.out.println(test);
     }
 
-    public Lines(ArrayList<String> words) {
-        this.words = words;
-    }
+    public Lines(ArrayList<String> words) { this.words = (ArrayList<String>) words.clone(); }
 
-    private void setWords(ArrayList<String> words) {
-        this.words = words;
+    public Lines(String[] words) { this.words = new ArrayList<String>(Arrays.asList(words)); }
+
+    private void setWords(ArrayList<String> words) { this.words = words;}
+
+    public boolean equals(Lines line) {
+        if(getLength() != line.getLength()) {
+            return false;
+        } else {
+            for(int i = 0; i < words.size(); ++i) {
+                if(!getWord(i).equals(line.getWord(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     @Override
@@ -46,9 +62,18 @@ public class Lines {
         }
         return line;
     }
+    public int getLength() { return this.words.size(); }
+
+    public Lines copy() {
+        return new Lines(getWords());
+    }
 
     public String getWord(int wordIndex) {
         return this.words.get(wordIndex);
+    }
+
+    public ArrayList<String> getWords() {
+        return (ArrayList<String>) words.clone();
     }
 
     public char getChar(int wordIndex, int charIndex) {
