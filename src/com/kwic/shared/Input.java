@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 public class Input {
 
-    private static final String INPUT_LINES_MESSAGE = "Enter each lines followed by enter\n" +
-            "Enter an empty line to finish entering lines";
+    private static final String WELCOME_MESSAGE = "Welcome to KWIC Index Generator";
 
-    private static final String INPUT_IGNORED_WORDS = "Enter each ignored words followed by enter\n" +
-            "Enter an empty line to finish entering ignored words";
+    private static final String INPUT_LINES_MESSAGE = "Enter each line followed by enter " +
+            "(to terminate, enter an empty line) :";
+
+    private static final String INPUT_IGNORED_WORDS = "Enter each ignored words followed by enter " +
+            "(to terminate, enter an empty line):";
 
     private static final String SPACE_REGEX = "\\s+";
 
@@ -18,6 +20,10 @@ public class Input {
     public static void main(String[] args) {
         getLines();
         getIgnoredWords();
+    }
+
+    public static void displayWelcomeMessage() {
+        System.out.println(WELCOME_MESSAGE);
     }
 
     public static ArrayList<ArrayList<String>> getLines() {
