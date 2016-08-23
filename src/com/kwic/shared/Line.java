@@ -7,7 +7,7 @@ import java.util.Comparator;
 /**
  * Created by kylel on 20/8/2016.
  */
-public class Lines {
+public class Line {
 
     private ArrayList<String> words;
 
@@ -17,27 +17,27 @@ public class Lines {
         ArrayList<String> testString = new ArrayList<String>();
         testString.add("test");
         testString.add("String");
-        Lines test = new Lines(testString);
-        Lines test2 = new Lines(testString);
+        Line test = new Line(testString);
+        Line test2 = new Line(testString);
         System.out.println(test.equals(test2));
         testString.add("String1");
-        Lines test3 = new Lines(testString);
+        Line test3 = new Line(testString);
         System.out.println(test.equals(test3));
         System.out.println(test.getWord(0));
         System.out.println(test.getChar(0, 0));
         System.out.println(test);
-        System.out.println(new Lines(new String[] {"a","a","s"}));
+        System.out.println(new Line(new String[] {"a","a","s"}));
         test.setChar(1, 0, 's');
         System.out.println(test);
     }
 
-    public Lines(ArrayList<String> words) { this.words = (ArrayList<String>) words.clone(); }
+    public Line(ArrayList<String> words) { this.words = (ArrayList<String>) words.clone(); }
 
-    public Lines(String[] words) { this.words = new ArrayList<String>(Arrays.asList(words)); }
+    public Line(String[] words) { this.words = new ArrayList<String>(Arrays.asList(words)); }
 
     private void setWords(ArrayList<String> words) { this.words = words;}
 
-    public boolean equals(Lines line) {
+    public boolean equals(Line line) {
         if(getLength() != line.getLength()) {
             return false;
         } else {
@@ -69,8 +69,8 @@ public class Lines {
 
     public int getLength() { return this.words.size(); }
 
-    public Lines copy() {
-        return new Lines(getWords());
+    public Line copy() {
+        return new Line(getWords());
     }
 
     public String getWord(int wordIndex) {
@@ -97,9 +97,9 @@ public class Lines {
         this.words.add(wordIndex, newWord);
     }
 
-    public static class LinesComparator implements Comparator<Lines> {
+    public static class LinesComparator implements Comparator<Line> {
         @Override
-        public int compare(Lines line1, Lines line2) {
+        public int compare(Line line1, Line line2) {
             return line1.toString().compareToIgnoreCase(line2.toString());
         }
     }
