@@ -10,12 +10,12 @@ public class Input {
 
     private static final String EMPTY_STRING = "";
 
-    public static ArrayList<String> getInput() {
+    public static ArrayList<String> getInput(int size) {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> input = new ArrayList<>();
         String inputLine;
 
-        while(sc.hasNextLine()) {
+        while(input.size() < size && sc.hasNextLine()) {
             inputLine = sc.nextLine();
             if(inputLine.equals(EMPTY_STRING) || inputLine.trim().length() == 0) {
                 break;

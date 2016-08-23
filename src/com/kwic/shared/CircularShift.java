@@ -25,7 +25,7 @@ public class CircularShift {
     private ArrayList<Line> circulateLine(ArrayList<String> words) {
         ArrayList<Line> circulatedLines = new ArrayList<>();
         circulatedLines.add(new Line(new ArrayList<>(words)));
-        for(String ignored : words) {
+        for(int i = 0; i < words.size() - 1; i++) {
             words.add(words.remove(0));
             circulatedLines.add(new Line(new ArrayList<>(words)));
         }
@@ -33,7 +33,7 @@ public class CircularShift {
     }
 
     public static void main(String[] args) {
-        ArrayList<Line> a = new ArrayList<Line>();
+        ArrayList<Line> a = new ArrayList<>();
         a.add(new Line(new String[]{"working", "very", "hard"}));
         a.add(new Line(new String[]{"sleep", "all", "day"}));
         CircularShift b = new CircularShift(a);
