@@ -1,8 +1,12 @@
 package com.kwic.pipe;
 
 import java.util.ArrayList;
-import com.kwic.shared.Lines;
-import com.kwic.shared.Input;
+
+import com.kwic.adt.Alphabetizer;
+import com.kwic.adt.CircularShift;
+import com.kwic.adt.IgnoreWordFilter;
+import com.kwic.shared.Interaction;
+import com.kwic.shared.Line;
 
 /**
  * Created by tanmunaw on 23/8/16.
@@ -10,25 +14,14 @@ import com.kwic.shared.Input;
 public class MasterControl {
     public static void main(String[] args) {
 
-        Input.displayWelcomeMessage();
+        Interaction.displayWelcomeMessage();
 
-        ArrayList<ArrayList<String>> inputString = Input.getLines();
+        ArrayList<Line> lines = Interaction.getLines();
 
-        ArrayList<Lines> lines = new ArrayList<>();
-        for(ArrayList<String> inputWords : inputString) {
-            lines.add(new Lines(inputWords));
-        }
-
-        ArrayList<String> ignoredWords = Input.getIgnoredWords();
+        ArrayList<String> ignoredWords = Interaction.getIgnoredWords();
 
         CircularShiftPipeline circularShift = new CircularShiftPipeline(lines, ignoredWords);
         circularShift.next();
-
-//        IgnoreWordFilter ignoreWordFilter = new IgnoreWordFilter(circularShift.circulate());
-//
-//        Alphabetizer alphabetizer = new Alphabetizer(ignoreWordFilter.filterIgnoredWords(ignoredWords));
-//
-//        Output.displayKWICIndex(alphabetizer.sort());
 
 
     }

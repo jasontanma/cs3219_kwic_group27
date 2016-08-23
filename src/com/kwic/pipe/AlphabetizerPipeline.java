@@ -1,7 +1,8 @@
 package com.kwic.pipe;
 
 import com.kwic.adt.Alphabetizer;
-import com.kwic.shared.Lines;
+import com.kwic.shared.Interaction;
+import com.kwic.shared.Line;
 import java.util.ArrayList;
 
 import com.kwic.shared.Output;
@@ -12,11 +13,12 @@ import com.kwic.shared.Output;
 public class AlphabetizerPipeline extends Alphabetizer implements Pipeline {
 
 
-    public AlphabetizerPipeline(ArrayList<Lines> lines) {
+    public AlphabetizerPipeline(ArrayList<Line> lines) {
         super(lines);
     }
 
     public void next() {
-        Output.displayKWICIndex(sort());
+        ArrayList<String> sortedLines = sort();
+        Interaction.displayKWICIndex(sortedLines);
     }
 }

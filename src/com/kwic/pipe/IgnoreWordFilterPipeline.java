@@ -1,7 +1,7 @@
 package com.kwic.pipe;
 
 import com.kwic.adt.IgnoreWordFilter;
-import com.kwic.shared.Lines;
+import com.kwic.shared.Line;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class IgnoreWordFilterPipeline extends IgnoreWordFilter implements Pipeli
 
     private ArrayList<String> ignoredWords;
 
-    public IgnoreWordFilterPipeline(ArrayList<Lines> lines, ArrayList<String> ignoredWords) {
+    public IgnoreWordFilterPipeline(ArrayList<Line> lines, ArrayList<String> ignoredWords) {
         super(lines);
         this.ignoredWords = ignoredWords;
     }
