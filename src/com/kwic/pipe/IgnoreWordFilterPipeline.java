@@ -1,6 +1,6 @@
 package com.kwic.pipe;
 
-import com.kwic.adt.IgnoreWordFilter;
+import com.kwic.shared.IgnoreWordFilter;
 import com.kwic.shared.Line;
 
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ public class IgnoreWordFilterPipeline extends IgnoreWordFilter implements Pipeli
     }
 
     public void next() {
-//        System.out.println("Filter done");
         AlphabetizerPipeline alphaPipeline = new AlphabetizerPipeline(filterIgnoredWords(ignoredWords));
         alphaPipeline.next();
     }

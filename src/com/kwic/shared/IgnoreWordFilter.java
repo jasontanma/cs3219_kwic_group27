@@ -1,28 +1,24 @@
-package com.kwic.adt;
+package com.kwic.shared;
 
-
-import com.kwic.shared.Line;
-
-import java.util.*;
-
+import java.util.ArrayList;
 /**
  * Created by MA on 2016/08/20.
  */
-public class Alphabetizer {
-    private ArrayList<Line> lines;
+public class IgnoreWordFilter {
+    private ArrayList<Line> circulatedLines;
 
-    public Alphabetizer(ArrayList<Line> lines) {
-        this.lines = (ArrayList<Line>) lines.clone();
+    public IgnoreWordFilter(ArrayList<Line> circulatedLines) {
+        this.circulatedLines = circulatedLines;
     }
 
-    public ArrayList<String> sort() {
-        Collections.sort(lines, new Line.LinesComparator());
-        ArrayList<String> stringArrayList = new ArrayList<>();
-        for(Line line : lines) {
-            stringArrayList.add(line.toString());
+    public ArrayList<Line> filterIgnoredWords(ArrayList<String> ignoredWords) {
+        ArrayList<Line> filteredLines = new ArrayList<>();
+        for(Line line: circulatedLines) {
+            if(!ignoredWords.contains(line.getWord(0))) {
+                filteredLines.add(line.copy());
+            }
         }
-
-        return stringArrayList;
+        return filteredLines;
     }
 
     public static void main(String[] args) {
@@ -43,10 +39,8 @@ public class Alphabetizer {
         ignoredWords.add("Day");
         ignoredWords.add("the");
         ArrayList<Line> c = b.filterIgnoredWords(ignoredWords);
-        Alphabetizer d = new Alphabetizer(c);
-        ArrayList<String> e = d.sort();
-        for(int i = 0; i < e.size(); ++i) {
-            System.out.println(i + " " + e.get(i));
+        for(int i = 0; i < c.size(); ++i) {
+            System.out.println(i + " " + c.get(i));
         }
     }
 }

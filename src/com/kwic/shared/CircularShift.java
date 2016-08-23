@@ -1,7 +1,6 @@
-package com.kwic.adt;
+package com.kwic.shared;
 
 import java.util.ArrayList;
-import com.kwic.shared.Line;
 
 /**
  * Created by MA on 2016/08/20.
@@ -14,15 +13,21 @@ public class CircularShift {
     }
 
     public ArrayList<Line> circulate() {
-        ArrayList<Line> circulatedLines = new ArrayList<Line>();
-        for(int i = 0; i < lines.size(); ++i) {
-            Line line = lines.get(i);
+        ArrayList<Line> compiledCirculatedLines = new ArrayList<>();
+
+        for(Line line: lines) {
             ArrayList<String> words = line.getWords();
-            circulatedLines.add(new Line((ArrayList<String>)words.clone()));
-            for(int j = 0; j < words.size() - 1; ++j) {
-                words.add(words.remove(0));
-                circulatedLines.add(new Line((ArrayList<String>)words.clone()));
-            }
+            compiledCirculatedLines.addAll(circulateLine(words));
+        }
+        return compiledCirculatedLines;
+    }
+
+    private ArrayList<Line> circulateLine(ArrayList<String> words) {
+        ArrayList<Line> circulatedLines = new ArrayList<>();
+        circulatedLines.add(new Line(new ArrayList<>(words)));
+        for(String ignored : words) {
+            words.add(words.remove(0));
+            circulatedLines.add(new Line(new ArrayList<>(words)));
         }
         return circulatedLines;
     }

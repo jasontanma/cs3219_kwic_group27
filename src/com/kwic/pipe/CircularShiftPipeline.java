@@ -1,6 +1,6 @@
 package com.kwic.pipe;
 
-import com.kwic.adt.CircularShift;
+import com.kwic.shared.CircularShift;
 import com.kwic.shared.Line;
 import java.util.ArrayList;
 

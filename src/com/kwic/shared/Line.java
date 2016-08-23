@@ -31,11 +31,9 @@ public class Line {
         System.out.println(test);
     }
 
-    public Line(ArrayList<String> words) { this.words = (ArrayList<String>) words.clone(); }
+    public Line(ArrayList<String> words) { this.words = new ArrayList<>(words); }
 
-    public Line(String[] words) { this.words = new ArrayList<String>(Arrays.asList(words)); }
-
-    private void setWords(ArrayList<String> words) { this.words = words;}
+    public Line(String[] words) { this.words = new ArrayList<>(Arrays.asList(words)); }
 
     public boolean equals(Line line) {
         if(getLength() != line.getLength()) {
@@ -78,7 +76,7 @@ public class Line {
     }
 
     public ArrayList<String> getWords() {
-        return (ArrayList<String>) words.clone();
+        return new ArrayList<>(words);
     }
 
     public char getChar(int wordIndex, int charIndex) {
