@@ -1,8 +1,7 @@
 package com.kwic.adt;
 
-import com.kwic.shared.Input;
-import com.kwic.shared.Lines;
-import com.kwic.shared.Output;
+import com.kwic.shared.Interaction;
+import com.kwic.shared.Line;
 
 import java.util.ArrayList;
 
@@ -13,16 +12,11 @@ public class MasterControl {
 
     public static void main(String[] args) {
 
-        Input.displayWelcomeMessage();
+        Interaction.displayWelcomeMessage();
 
-        ArrayList<ArrayList<String>> inputString = Input.getLines();
+        ArrayList<Line> lines = Interaction.getLines();
 
-        ArrayList<Lines> lines = new ArrayList<>();
-        for(ArrayList<String> inputWords : inputString) {
-            lines.add(new Lines(inputWords));
-        }
-
-        ArrayList<String> ignoredWords = Input.getIgnoredWords();
+        ArrayList<String> ignoredWords = Interaction.getIgnoredWords();
 
         CircularShift circularShift = new CircularShift(lines);
 
@@ -30,9 +24,6 @@ public class MasterControl {
 
         Alphabetizer alphabetizer = new Alphabetizer(ignoreWordFilter.filterIgnoredWords(ignoredWords));
 
-        Output.displayKWICIndex(alphabetizer.sort());
-
-
+        Interaction.displayKWICIndex(alphabetizer.sort());
     }
-
 }
