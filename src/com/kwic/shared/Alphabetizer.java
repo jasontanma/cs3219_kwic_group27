@@ -5,6 +5,7 @@ import java.util.*;
 
 /**
  * Created by MA on 2016/08/20.
+ * Sort the lines by alphabetical order.
  */
 public class Alphabetizer {
     private ArrayList<Line> lines;
@@ -13,6 +14,10 @@ public class Alphabetizer {
         this.lines = (ArrayList<Line>) lines.clone();
     }
 
+    /**
+     * Sort the lines by alphabetical order.
+     * @return  Arraylist of sorted lines.
+     */
     public ArrayList<String> sort() {
         Collections.sort(lines, new Line.LinesComparator());
         ArrayList<String> stringArrayList = new ArrayList<>();

@@ -3,6 +3,7 @@ package com.kwic.shared;
 import java.util.ArrayList;
 /**
  * Created by MA on 2016/08/20.
+ * Filter out the line with starting word that is included in the ignored words.
  */
 public class IgnoreWordFilter {
     private ArrayList<Line> circulatedLines;
@@ -11,6 +12,11 @@ public class IgnoreWordFilter {
         this.circulatedLines = circulatedLines;
     }
 
+    /**
+     Filter the lines starting with ignored words.
+     @param     ignoredWords    Arraylist of words to be ignored
+     @return             Arraylist of line object after getting filtered out by ignored words.
+     */
     public ArrayList<Line> filterIgnoredWords(ArrayList<String> ignoredWords) {
         ArrayList<Line> filteredLines = new ArrayList<>();
         for(Line line: circulatedLines) {
