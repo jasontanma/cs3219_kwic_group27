@@ -4,7 +4,6 @@ import com.kwic.pipeandfilter.pipe.IgnoreWordFiltererPipe;
 import com.kwic.shared.IgnoreWordFilterer;
 import com.kwic.shared.Line;
 import com.kwic.shared.LowercaseConvertor;
-import com.sun.tools.javac.comp.Lower;
 
 import java.util.ArrayList;
 
