@@ -47,25 +47,13 @@ public class Interaction {
      * Request the user to enter the lines.
      */
     public static ArrayList<Line> getLines() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc;
         if(inputMethod == KwicConstant.MANUAL_INPUT) {
             Output.displayMessage(INPUT_LINES_MESSAGE);
-        } else if(inputMethod == KwicConstant.FILE_INPUT) {
+            sc = new Scanner(System.in);
+        } else {
             Output.displayMessage(INPUT_LINES_FILE_NAME_MESSAGE);
-
-            String fileName = Input.getFileName();
-            File file = new File(fileName);
-
-            while(!file.exists() || file.isDirectory()) {
-                Output.displayMessage(INVALID_FILE_NAME_MESSAGE);
-                fileName = Input.getFileName();
-                file = new File(fileName);
-            }
-
-            try {
-                sc = new Scanner(new FileInputStream(fileName));
-            } catch (FileNotFoundException e) {
-            }
+            sc = getScanner();
         }
         return getInputLines(sc);
     }
@@ -74,21 +62,14 @@ public class Interaction {
      * Request the user to enter the ignored words.
      */
     public static ArrayList<String> getIgnoredWords() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc;
         if(inputMethod == KwicConstant.MANUAL_INPUT) {
             Output.displayMessage(INPUT_IGNORED_WORDS);
-        } else if(inputMethod == KwicConstant.FILE_INPUT) {
+            sc = new Scanner(System.in);
+        } else {
             Output.displayMessage(INPUT_IGNORE_FILE_NAME_MESSAGE);
-            String fileName = Input.getFileName();
-            try {
-                sc = new Scanner(new FileInputStream(fileName));
-            } catch (FileNotFoundException e) {
-                Output.displayMessage(INVALID_FILE_NAME_MESSAGE);
-                getLines();
-            }
+            sc = getScanner();
         }
-
-
         return Input.getInput(IGNORE_LIMIT, sc);
     }
 
@@ -98,6 +79,28 @@ public class Interaction {
     public static void displayKWICIndex(ArrayList<Line> list) {
         Output.displayMessage(OUTPUT_DISPLAY_MESSAGE);
         Output.displayArrayList(list);
+    }
+
+    /**
+     * Get a valid file name and return a scanner that reads the file.
+     * @return      Scanner that reads a valid file.
+     */
+    private static Scanner getScanner() {
+        Scanner sc = new Scanner(System.in);
+        String fileName = Input.getFileName();
+        File file = new File(fileName);
+
+        while(!file.exists() || file.isDirectory()) {
+            Output.displayMessage(INVALID_FILE_NAME_MESSAGE);
+            fileName = Input.getFileName();
+            file = new File(fileName);
+        }
+
+        try {
+            sc = new Scanner(new FileInputStream(fileName));
+        } catch (FileNotFoundException e) {
+        }
+        return sc;
     }
 
     /**
