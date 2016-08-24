@@ -35,6 +35,8 @@ public class MasterControl {
     }
 
     private void fetchInput() {
+
+        Interaction.getInputMethod();
         lines = Interaction.getLines();
         ignoredWords = Interaction.getIgnoredWords();
     }
