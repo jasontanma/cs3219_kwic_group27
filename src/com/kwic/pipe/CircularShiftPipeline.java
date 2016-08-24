@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Created by tanmunaw on 23/8/16.
+ * Pipeline block version of circular shift class.
  */
 public class CircularShiftPipeline extends CircularShift implements Pipeline {
 

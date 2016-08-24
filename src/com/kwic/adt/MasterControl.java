@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Created by kylel on 20/8/2016.
+ * Master control for ADT version of KWIC index.
  */
 public class MasterControl {
 

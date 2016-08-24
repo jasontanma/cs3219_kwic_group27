@@ -7,6 +7,7 @@ import com.kwic.shared.Line;
 
 /**
  * Created by tanmunaw on 23/8/16.
+ * Master control for pipeline version of KWIC index.
  */
 public class MasterControl {
     public static void main(String[] args) {
