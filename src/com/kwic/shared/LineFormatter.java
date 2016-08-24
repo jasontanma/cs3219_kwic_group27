@@ -34,7 +34,7 @@ public class LineFormatter {
         a.add(new Line(new String[]{"Gold", "and", "Silver"}));
         a.add(new Line(new String[]{"a", "an", "the"}));
 
-        IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a).circulate());
+        IgnoreWordFilterer b = new IgnoreWordFilterer(new CircularShift(a).circulate());
         ArrayList<String> ignoredWords = new ArrayList<>();
         ignoredWords.add("ALL");
         ignoredWords.add("hArd");

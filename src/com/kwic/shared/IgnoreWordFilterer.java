@@ -5,10 +5,10 @@ import java.util.ArrayList;
  * Created by MA on 2016/08/20.
  * Filter out the line with starting word that is included in the ignored words.
  */
-public class IgnoreWordFilter {
+public class IgnoreWordFilterer {
     private ArrayList<Line> circulatedLines;
 
-    public IgnoreWordFilter(ArrayList<Line> circulatedLines) {
+    public IgnoreWordFilterer(ArrayList<Line> circulatedLines) {
         this.circulatedLines = circulatedLines;
     }
 
@@ -35,7 +35,7 @@ public class IgnoreWordFilter {
         a.add(new Line(new String[]{"Gold", "and", "Silver"}));
         a.add(new Line(new String[]{"a", "an", "the"}));
 
-        IgnoreWordFilter b = new IgnoreWordFilter(new CircularShift(a).circulate());
+        IgnoreWordFilterer b = new IgnoreWordFilterer(new CircularShift(a).circulate());
         ArrayList<String> ignoredWords = new ArrayList<>();
         ignoredWords.add("all");
         ignoredWords.add("hard");

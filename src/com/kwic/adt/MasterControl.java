@@ -18,7 +18,7 @@ public class MasterControl {
 
         CircularShift circularShift = new CircularShift(lines);
 
-        IgnoreWordFilter ignoreWordFilter = new IgnoreWordFilter(circularShift.circulate());
+        IgnoreWordFilterer ignoreWordFilter = new IgnoreWordFilterer(circularShift.circulate());
 
         LowercaseConvertor lowercaseConvertor = new LowercaseConvertor();
         ArrayList<String> lowercasedIgnoredWords = lowercaseConvertor.convertStringListToLowercaseList(ignoredWords);
