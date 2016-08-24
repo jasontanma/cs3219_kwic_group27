@@ -1,6 +1,12 @@
 package com.kwic.shared;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import static com.kwic.shared.KwicConstant.*;
 
 /**
  * Created by kylel on 23/8/2016.
@@ -8,27 +14,9 @@ import java.util.ArrayList;
  */
 public class Interaction {
 
-    /**
-     * Number of lines that can be input.
-     */
-    private static final int INPUT_LIMIT = 40;
-
-    /**
-     * Number of ignored words that can be input.
-     */
-    private static final int IGNORE_LIMIT = 10;
-
-    private static final String WELCOME_MESSAGE = "Welcome to KWIC Index Generator";
-
-    private static final String INPUT_LINES_MESSAGE = "Enter each line (max. " + INPUT_LIMIT + ") followed by enter " +
-            "(to terminate, enter an empty line) :";
-
-    private static final String INPUT_IGNORED_WORDS = "Enter each ignored words (max. " + IGNORE_LIMIT + ") followed by enter " +
-            "(to terminate, enter an empty line):";
-
-    private static final String OUTPUT_DISPLAY_MESSAGE = "Generated KWIC index:";
-
     private static final String SPACE_REGEX = "\\s+";
+
+    private static int inputMethod;
 
     public static void main(String[] args) {
         getLines();
@@ -43,19 +31,65 @@ public class Interaction {
     }
 
     /**
+     * Display welcome message when user starts the application.
+     */
+    public static void getInputMethod() {
+        Output.displayMessage(INPUT_METHOD_MESSAGE);
+        int userInput = Input.getInputMethod();
+        while(userInput != KwicConstant.MANUAL_INPUT && userInput != KwicConstant.FILE_INPUT) {
+            Output.displayMessage(INVALID_INPUT_METHOD_MESSAGE);
+            userInput = Input.getInputMethod();
+        }
+        inputMethod = userInput;
+    }
+
+    /**
      * Request the user to enter the lines.
      */
     public static ArrayList<Line> getLines() {
-        Output.displayMessage(INPUT_LINES_MESSAGE);
-        return getInputLines();
+        Scanner sc = new Scanner(System.in);
+        if(inputMethod == KwicConstant.MANUAL_INPUT) {
+            Output.displayMessage(INPUT_LINES_MESSAGE);
+        } else if(inputMethod == KwicConstant.FILE_INPUT) {
+            Output.displayMessage(INPUT_LINES_FILE_NAME_MESSAGE);
+
+            String fileName = Input.getFileName();
+            File file = new File(fileName);
+
+            while(!file.exists() || file.isDirectory()) {
+                Output.displayMessage(INVALID_FILE_NAME_MESSAGE);
+                fileName = Input.getFileName();
+                file = new File(fileName);
+            }
+
+            try {
+                sc = new Scanner(new FileInputStream(fileName));
+            } catch (FileNotFoundException e) {
+            }
+        }
+        return getInputLines(sc);
     }
 
     /**
      * Request the user to enter the ignored words.
      */
     public static ArrayList<String> getIgnoredWords() {
-        Output.displayMessage(INPUT_IGNORED_WORDS);
-        return Input.getInput(IGNORE_LIMIT);
+        Scanner sc = new Scanner(System.in);
+        if(inputMethod == KwicConstant.MANUAL_INPUT) {
+            Output.displayMessage(INPUT_IGNORED_WORDS);
+        } else if(inputMethod == KwicConstant.FILE_INPUT) {
+            Output.displayMessage(INPUT_IGNORE_FILE_NAME_MESSAGE);
+            String fileName = Input.getFileName();
+            try {
+                sc = new Scanner(new FileInputStream(fileName));
+            } catch (FileNotFoundException e) {
+                Output.displayMessage(INVALID_FILE_NAME_MESSAGE);
+                getLines();
+            }
+        }
+
+
+        return Input.getInput(IGNORE_LIMIT, sc);
     }
 
     /**
@@ -70,8 +104,8 @@ public class Interaction {
      * Get input lines from user and process them into arraylist of line.
      * @return      Arraylist of line object that store the input.
      */
-    private static ArrayList<Line> getInputLines() {
-        ArrayList<String> input = Input.getInput(INPUT_LIMIT);
+    private static ArrayList<Line> getInputLines(Scanner sc) {
+        ArrayList<String> input = Input.getInput(INPUT_LIMIT, sc);
         return convertStringArrayListToLineArrayList(input);
     }
 

@@ -14,10 +14,11 @@ public class Input {
     /**
      * Retrieve the input from standard io.
      * @param size      Number of lines to be read.
+     * @param sc        Scanner for reading of data.
+     *
      * @return          Arraylist of string input read from standard io.
      */
-    public static ArrayList<String> getInput(int size) {
-        Scanner sc = new Scanner(System.in);
+    public static ArrayList<String> getInput(int size, Scanner sc) {
         ArrayList<String> input = new ArrayList<>();
         String inputLine;
 
@@ -29,7 +30,31 @@ public class Input {
                 input.add(inputLine.trim());
             }
         }
-
         return input;
+    }
+
+    /**
+     * Retrieve the input method from standard io.
+     *
+     * @return          Arraylist of string input read from standard io.
+     */
+    public static int getInputMethod() {
+        Scanner sc = new Scanner(System.in);
+        if(sc.hasNextInt()) {
+            return sc.nextInt();
+        } else {
+            return KwicConstant.INVALID_INPUT_METHOD;
+        }
+    }
+
+    /**
+     * Retrieve the file name from standard io.
+     *
+     * @return          Arraylist of string input read from standard io.
+     */
+    public static String getFileName() {
+        Scanner sc = new Scanner(System.in);
+        String fileName = sc.nextLine();
+        return fileName;
     }
 }
