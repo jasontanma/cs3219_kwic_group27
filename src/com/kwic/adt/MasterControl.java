@@ -13,6 +13,7 @@ public class MasterControl {
     public static void main(String[] args) {
 
         Interaction.displayWelcomeMessage();
+        Interaction.getInputMethod();
         ArrayList<Line> lines = Interaction.getLines();
         ArrayList<String> ignoredWords = Interaction.getIgnoredWords();
 
