@@ -26,7 +26,7 @@ public class Output {
      * Display multiple line messages on standard output io.
      * @param list   List of string of messages to be displayed.
      */
-    public static void displayArrayList(ArrayList<String> list) {
+    public static void displayArrayList(ArrayList<Line> list) {
         list.forEach(System.out::println);
     }
 }

@@ -61,7 +61,7 @@ public class Interaction {
     /**
      * Display the KWIC index on output.
      */
-    public static void displayKWICIndex(ArrayList<String> list) {
+    public static void displayKWICIndex(ArrayList<Line> list) {
         Output.displayMessage(OUTPUT_DISPLAY_MESSAGE);
         Output.displayArrayList(list);
     }

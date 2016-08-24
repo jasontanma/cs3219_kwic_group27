@@ -7,17 +7,29 @@ import java.util.ArrayList;
  * Set the arraylist of string to all lowercase.
  */
 public class LowercaseConvertor {
-    private ArrayList<String> stringList;
+    public LowercaseConvertor() {}
 
-    public LowercaseConvertor(ArrayList<String> stringList) {
-        this.stringList = stringList;
+    /**
+     * Convert the arraylist of line object to lowercase.
+     * @param   lineList     Arraylist of line object to be lowercased.
+     * @return               ArrayList of lowercased string.
+     */
+    public ArrayList<Line> convertLineListToLowercaseList(ArrayList<Line> stringList) {
+        ArrayList<Line> lowercasedStringList = new ArrayList<>();
+        for(Line string: stringList) {
+            ArrayList<String> strList = convertStringListToLowercaseList(string.getWords());
+            Line lowercasedLine = new Line(strList);
+            lowercasedStringList.add(lowercasedLine);
+        }
+        return lowercasedStringList;
     }
 
     /**
-     * Get the lowercased arraylist of string.
-     * @return      ArrayList of lowercased string.
+     * Convert the arraylist of string to lowercase.
+     * @param stringList     Arraylist of string to be lowercased.
+     * @return               ArrayList of lowercased string.
      */
-    public ArrayList<String> getLowercaseList() {
+    public ArrayList<String> convertStringListToLowercaseList(ArrayList<String> stringList) {
         ArrayList<String> lowercasedStringList = new ArrayList<>();
         for(String string: stringList) {
             lowercasedStringList.add(string.toLowerCase());

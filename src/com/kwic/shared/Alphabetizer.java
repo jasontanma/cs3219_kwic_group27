@@ -8,23 +8,16 @@ import java.util.*;
  * Sort the lines by alphabetical order.
  */
 public class Alphabetizer {
-    private ArrayList<Line> lines;
 
-    public Alphabetizer(ArrayList<Line> lines) {
-        this.lines = (ArrayList<Line>) lines.clone();
-    }
+    public Alphabetizer() {}
 
     /**
      * Sort the lines by alphabetical order.
      * @return  Arraylist of sorted lines.
      */
-    public ArrayList<String> sort() {
+    public ArrayList<Line> sort(ArrayList<Line> lines) {
         Collections.sort(lines, new Line.LinesComparator());
-        ArrayList<String> stringArrayList = new ArrayList<>();
-        for(Line line : lines) {
-            stringArrayList.add(line.toString());
-        }
-        return stringArrayList;
+        return lines;
     }
 
     public static void main(String[] args) {
@@ -44,9 +37,9 @@ public class Alphabetizer {
         ignoredWords.add("and");
         ignoredWords.add("Day");
         ignoredWords.add("the");
-        ArrayList<Line> c = b.filterIgnoredWords(ignoredWords);
-        Alphabetizer d = new Alphabetizer(c);
-        ArrayList<String> e = d.sort();
+        ArrayList<Line> c = b.filterIgnoredWordsIgnoreCase(ignoredWords);
+        Alphabetizer d = new Alphabetizer();
+        ArrayList<Line> e = d.sort(c);
         for(int i = 0; i < e.size(); ++i) {
             System.out.println(i + " " + e.get(i));
         }

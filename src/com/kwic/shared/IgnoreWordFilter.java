@@ -17,10 +17,10 @@ public class IgnoreWordFilter {
      @param     ignoredWords    Arraylist of words to be ignored
      @return             Arraylist of line object after getting filtered out by ignored words.
      */
-    public ArrayList<Line> filterIgnoredWords(ArrayList<String> ignoredWords) {
+    public ArrayList<Line> filterIgnoredWordsIgnoreCase(ArrayList<String> ignoredWords) {
         ArrayList<Line> filteredLines = new ArrayList<>();
         for(Line line: circulatedLines) {
-            if(!ignoredWords.contains(line.getWord(0))) {
+            if(!ignoredWords.contains(line.getWord(0).toLowerCase())) {
                 filteredLines.add(line.copy());
             }
         }
@@ -44,7 +44,7 @@ public class IgnoreWordFilter {
         ignoredWords.add("and");
         ignoredWords.add("Day");
         ignoredWords.add("the");
-        ArrayList<Line> c = b.filterIgnoredWords(ignoredWords);
+        ArrayList<Line> c = b.filterIgnoredWordsIgnoreCase(ignoredWords);
         for(int i = 0; i < c.size(); ++i) {
             System.out.println(i + " " + c.get(i));
         }

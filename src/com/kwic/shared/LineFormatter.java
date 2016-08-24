@@ -8,11 +8,9 @@ import java.util.ArrayList;
  */
 public class LineFormatter {
     ArrayList<Line> lines;
-    ArrayList<String> ignoredWords;
 
-    public LineFormatter(ArrayList<Line> lines, ArrayList<String> ignoredWords) {
+    public LineFormatter(ArrayList<Line> lines) {
         this.lines = lines;
-        this.ignoredWords = ignoredWords;
     }
 
     /**
@@ -20,19 +18,11 @@ public class LineFormatter {
      * @return  Arraylist of formatted line.
      */
     public ArrayList<Line> format() {
-        ArrayList<Line> formattedLines = new ArrayList<>();
         for(Line line: lines) {
-            ArrayList<String> strLine = new ArrayList<>();
-            for(String word: line.getWords()) {
-                if(ignoredWords.contains(word)) {
-                    strLine.add(word.toLowerCase());
-                } else {
-                    strLine.add(word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase());
-                }
-            }
-            formattedLines.add(new Line(strLine));
+            char capitalizedChar = Character.toUpperCase(line.getChar(0,0));
+            line.setChar(0, 0, capitalizedChar);
         }
-        return formattedLines;
+        return lines;
     }
 
     public static void main(String[] args) {
@@ -54,11 +44,11 @@ public class LineFormatter {
         ignoredWords.add("Day");
         ignoredWords.add("the");
 //        ArrayList<String> processedIgnoredWords = new LowercaseConvertor(ignoredWords).getLowercaseList();
-//        ArrayList<String> processedIgnoredWords = ignoredWords;
-        ArrayList<Line> c = b.filterIgnoredWords(processedIgnoredWords);
-        LineFormatter c2 = new LineFormatter(c, processedIgnoredWords);
-        Alphabetizer d = new Alphabetizer(c2.format());
-        ArrayList<String> e = d.sort();
+        ArrayList<String> processedIgnoredWords = ignoredWords;
+        ArrayList<Line> c = b.filterIgnoredWordsIgnoreCase(processedIgnoredWords);
+        LineFormatter c2 = new LineFormatter(c);
+        Alphabetizer d = new Alphabetizer();
+        ArrayList<Line> e = d.sort(c2.format());
         for(int i = 0; i < e.size(); ++i) {
             System.out.println(i + " " + e.get(i));
         }

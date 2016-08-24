@@ -19,7 +19,7 @@ public class IgnoreWordFilterPipeline extends IgnoreWordFilter implements Pipeli
     }
 
     public void next() {
-        AlphabetizerPipeline alphaPipeline = new AlphabetizerPipeline(filterIgnoredWords(ignoredWords));
+        AlphabetizerPipeline alphaPipeline = new AlphabetizerPipeline(filterIgnoredWordsIgnoreCase(ignoredWords));
         alphaPipeline.next();
     }
 }

@@ -11,12 +11,15 @@ import java.util.ArrayList;
  */
 public class AlphabetizerPipeline extends Alphabetizer implements Pipeline {
 
+    ArrayList<Line> lines;
     public AlphabetizerPipeline(ArrayList<Line> lines) {
-        super(lines);
+        super();
+        this.lines = lines;
+
     }
 
     public void next() {
-        ArrayList<String> sortedLines = sort();
+        ArrayList<Line> sortedLines = sort(lines);
         Interaction.displayKWICIndex(sortedLines);
     }
 }
