@@ -24,7 +24,6 @@ public class Alphabetizer {
         for(Line line : lines) {
             stringArrayList.add(line.toString());
         }
-
         return stringArrayList;
     }
 

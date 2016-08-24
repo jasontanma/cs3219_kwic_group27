@@ -6,9 +6,12 @@ import java.util.Comparator;
 
 /**
  * Created by kylel on 20/8/2016.
+ * Data Structure for tokenized words of a line.
  */
 public class Line {
-
+    /**
+     * Store the line by tokens of words.
+     */
     private ArrayList<String> words;
 
     //Todo: Remove main function
@@ -35,6 +38,11 @@ public class Line {
 
     public Line(String[] words) { this.words = new ArrayList<>(Arrays.asList(words)); }
 
+    /**
+     * Compare with the line is equalavent to this.
+     * @param line      Line object to be compared with.
+     * @return          True if both line are the same, false otherwise.
+     */
     public boolean equals(Line line) {
         if(getLength() != line.getLength()) {
             return false;
@@ -65,24 +73,53 @@ public class Line {
         return line;
     }
 
+    /**
+     * Get the number of words in the line.
+     * @return      The integer count of words in the line.
+     */
     public int getLength() { return this.words.size(); }
 
+    /**
+     * Get a exact cloned copy of the line object.
+     * @return      Cloned copy of line object.
+     */
     public Line copy() {
         return new Line(getWords());
     }
 
+    /**
+     * Get the i-th word from the line.
+     * @param wordIndex     Index of the word to be retrieved.
+     * @return              String of word from wordIndex position.
+     */
     public String getWord(int wordIndex) {
         return this.words.get(wordIndex);
     }
 
+    /**
+     * Get the arraylist of word tokens.
+     * @return      Arraylist of word tokens.
+     */
     public ArrayList<String> getWords() {
         return new ArrayList<>(words);
     }
 
+    /**
+     * Get the character of a particular word within the line.
+     * @param wordIndex     Index of the word to be retrieved.
+     * @param charIndex     Index of the character of the word to be retrieved.
+     * @return              Character of the word of the line.
+     */
     public char getChar(int wordIndex, int charIndex) {
         return this.words.get(wordIndex).charAt(charIndex);
     }
 
+    /**
+     * Set the character of a particular word within the line.
+     * @param wordIndex     Index of the word to be retrieved.
+     * @param charIndex     Index of the character of the word to be retrieved.
+     * @param newChar
+     */
     public void setChar(int wordIndex, int charIndex, char newChar) {
 
         int startIndex = 0;
