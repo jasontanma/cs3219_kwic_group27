@@ -138,4 +138,16 @@ public class Line {
             return line1.toString().compareToIgnoreCase(line2.toString());
         }
     }
+
+    /**
+     * Capitalize first word, first character of each line in an ArrayList
+     * @param lines to capitalize
+     * @return lines that is capitalized
+     */
+    public static ArrayList<Line> capitalizeLines(ArrayList<Line> lines) {
+        for(Line line: lines) {
+            line.setChar(0, 0, Character.toUpperCase(line.getChar(0, 0)));
+        }
+        return lines;
+    }
 }

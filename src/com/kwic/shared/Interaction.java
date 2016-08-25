@@ -70,7 +70,8 @@ public class Interaction {
             Output.displayMessage(INPUT_IGNORE_FILE_NAME_MESSAGE);
             sc = getScanner();
         }
-        return Input.getInput(IGNORE_LIMIT, sc);
+        ArrayList<String> ignoredWords = Input.getInput(IGNORE_LIMIT, sc);
+        return convertStringListToLowercaseList(ignoredWords);
     }
 
     /**
@@ -138,5 +139,18 @@ public class Interaction {
             list.add(word.trim());
         }
         return list;
+    }
+
+    /**
+     * Convert the arraylist of string to lowercase.
+     * @param stringList     Arraylist of string to be lowercased.
+     * @return               ArrayList of lowercased string.
+     */
+    private static ArrayList<String> convertStringListToLowercaseList(ArrayList<String> stringList) {
+        ArrayList<String> lowercasedStringList = new ArrayList<>();
+        for(String string: stringList) {
+            lowercasedStringList.add(string.toLowerCase());
+        }
+        return lowercasedStringList;
     }
 }

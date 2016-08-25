@@ -3,7 +3,6 @@ package com.kwic.pipeandfilter.filter;
 import com.kwic.pipeandfilter.pipe.IgnoreWordFiltererPipe;
 import com.kwic.shared.IgnoreWordFilterer;
 import com.kwic.shared.Line;
-import com.kwic.shared.LowercaseConvertor;
 
 import java.util.ArrayList;
 
@@ -23,9 +22,7 @@ public class IgnoreWordFiltererFilter implements Filter {
     }
 
     public void execute() {
-        LowercaseConvertor lowercaseConvertor = new LowercaseConvertor();
-        ArrayList<String> loweredcaseIgnoredWords = lowercaseConvertor.convertStringListToLowercaseList(ignoredWords);
-        filteredLines = ignoredWordFilterer.filterIgnoredWordsIgnoreCase(loweredcaseIgnoredWords);
+        filteredLines = ignoredWordFilterer.filterIgnoredWordsIgnoreCase(ignoredWords);
         sentToPipe();
     }
 

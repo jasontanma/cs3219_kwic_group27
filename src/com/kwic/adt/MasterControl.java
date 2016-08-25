@@ -18,19 +18,11 @@ public class MasterControl {
         ArrayList<String> ignoredWords = Interaction.getIgnoredWords();
 
         CircularShift circularShift = new CircularShift(lines);
-
         IgnoreWordFilterer ignoreWordFilter = new IgnoreWordFilterer(circularShift.circulate());
-
-        LowercaseConvertor lowercaseConvertor = new LowercaseConvertor();
-        ArrayList<String> lowercasedIgnoredWords = lowercaseConvertor.convertStringListToLowercaseList(ignoredWords);
-        ArrayList<Line> filteredLine = ignoreWordFilter.filterIgnoredWordsIgnoreCase(lowercasedIgnoredWords);
-
-        LineFormatter lineFormatter = new LineFormatter(filteredLine);
-
-        ArrayList<Line> formattedFilteredLine = lineFormatter.format();
+        ArrayList<Line> filteredLine = ignoreWordFilter.filterIgnoredWordsIgnoreCase(ignoredWords);
+        ArrayList<Line> capitalizedFilteredLine = Line.capitalizeLines(filteredLine);
         Alphabetizer alphabetizer = new Alphabetizer();
 
-        Interaction.displayKWICIndex(alphabetizer.sort(formattedFilteredLine));
+        Interaction.displayKWICIndex(alphabetizer.sort(capitalizedFilteredLine));
     }
-
 }
