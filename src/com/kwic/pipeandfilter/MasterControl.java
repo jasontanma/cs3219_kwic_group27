@@ -29,11 +29,19 @@ public class MasterControl {
         passToDataSource(lines, ignoredWords);
     }
 
+    /**
+     * Pass input data to data source
+     * @param lines         Arraylist of Input Lines
+     * @param ignoredWords  Arraylist of ignored words string
+     */
     public void passToDataSource(ArrayList<Line> lines, ArrayList<String> ignoredWords) {
         DataSource dataSource = new DataSource(lines, ignoredWords);
         dataSource.execute();
     }
 
+    /**
+     * Get input data
+     */
     private void fetchInput() {
 
         Interaction.getInputMethod();

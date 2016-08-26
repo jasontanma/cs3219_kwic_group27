@@ -6,6 +6,7 @@ import com.kwic.shared.Line;
 
 /**
  * Created by tanmunaw on 24/8/16.
+ * Data source to receive input.
  */
 public class DataSource {
 
