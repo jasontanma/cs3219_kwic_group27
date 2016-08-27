@@ -7,6 +7,7 @@ import com.kwic.shared.Line;
 
 /**
  * Created by tanmunaw on 24/8/16.
+ * Output sink before sending to output.
  */
 public class OutputSink {
     ArrayList<Line> sortedLines;
