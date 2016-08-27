@@ -15,17 +15,10 @@ import static com.kwic.shared.KwicConstant.*;
 public class Interaction {
 
     private static final String SPACE_REGEX = "\\s+";
-
     private static final String SPACE_DELIMITTER = " ";
 
     private static int inputMethod;
-
     private static int outputMethod;
-
-    public static void main(String[] args) {
-        getLines();
-        getIgnoredWords();
-    }
 
     /**
      * Display welcome message when user starts the application.

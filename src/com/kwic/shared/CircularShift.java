@@ -42,15 +42,4 @@ public class CircularShift {
         }
         return circulatedLines;
     }
-
-    public static void main(String[] args) {
-        ArrayList<Line> a = new ArrayList<>();
-        a.add(new Line(new String[]{"working", "very", "hard"}));
-        a.add(new Line(new String[]{"sleep", "all", "day"}));
-        CircularShift b = new CircularShift(a);
-        ArrayList<Line> c = b.circulate();
-        for(int i = 0; i < c.size(); ++i) {
-            System.out.println(i + " " + c.get(i));
-        }
-    }
 }

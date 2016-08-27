@@ -14,28 +14,7 @@ public class Line {
      */
     private ArrayList<String> words;
 
-    //Todo: Remove main function
-    public static void main(String[] args) {
-
-        ArrayList<String> testString = new ArrayList<String>();
-        testString.add("test");
-        testString.add("String");
-        Line test = new Line(testString);
-        Line test2 = new Line(testString);
-        System.out.println(test.equals(test2));
-        testString.add("String1");
-        Line test3 = new Line(testString);
-        System.out.println(test.equals(test3));
-        System.out.println(test.getWord(0));
-        System.out.println(test.getChar(0, 0));
-        System.out.println(test);
-        System.out.println(new Line(new String[] {"a","a","s"}));
-        test.setChar(1, 0, 's');
-        System.out.println(test);
-    }
-
     public Line(ArrayList<String> words) { this.words = new ArrayList<>(words); }
-
     public Line(String[] words) { this.words = new ArrayList<>(Arrays.asList(words)); }
 
     /**
