@@ -16,6 +16,8 @@ public class Interaction {
 
     private static final String SPACE_REGEX = "\\s+";
 
+    private static final String SPACE_DELIMITTER = " ";
+
     private static int inputMethod;
 
     private static int outputMethod;
@@ -91,6 +93,7 @@ public class Interaction {
             sc = getScanner();
         }
         ArrayList<String> ignoredWords = Input.getInput(IGNORE_LIMIT, sc);
+        ignoredWords = trimIgnoredWords(ignoredWords);
         return convertStringListToLowercaseList(ignoredWords);
     }
 
@@ -194,5 +197,18 @@ public class Interaction {
             stringList.add(line.toString());
         }
         return stringList;
+    }
+
+    /**
+     * Trim ignored words to remove excess spaces and other words
+     * @param ignoredWords  ArrayList of String
+     * @return              ArrayList of String that are trimmed
+     */
+    private static ArrayList<String> trimIgnoredWords(ArrayList<String> ignoredWords) {
+        ArrayList<String> trimmedIgnoredWords = new ArrayList<>();
+        for(String word: ignoredWords) {
+            trimmedIgnoredWords.add(word.split(SPACE_DELIMITTER)[0]);
+        }
+        return trimmedIgnoredWords;
     }
 }
