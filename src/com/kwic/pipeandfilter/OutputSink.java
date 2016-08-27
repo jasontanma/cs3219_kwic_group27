@@ -17,6 +17,6 @@ public class OutputSink {
 
     public void output() {
         ArrayList<Line> capitalizedLines = Line.capitalizeLines(sortedLines);
-        Interaction.displayKWICIndex(capitalizedLines);
+        Interaction.outputKWICIndex(capitalizedLines);
     }
 }

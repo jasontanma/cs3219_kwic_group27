@@ -2,8 +2,6 @@ package com.kwic.pipeandfilter;
 
 import java.util.ArrayList;
 
-import com.kwic.pipeandfilter.filter.CircularShiftFilter;
-import com.kwic.pipeandfilter.pipe.DataSourcePipe;
 import com.kwic.shared.Interaction;
 import com.kwic.shared.Line;
 
@@ -35,10 +33,10 @@ public class MasterControl {
     }
 
     private void fetchInput() {
-
         Interaction.getInputMethod();
         lines = Interaction.getLines();
         ignoredWords = Interaction.getIgnoredWords();
+        Interaction.getOutputMethod();
     }
 
 }

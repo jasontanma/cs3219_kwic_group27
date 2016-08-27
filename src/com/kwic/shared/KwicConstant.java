@@ -15,14 +15,14 @@ public class KwicConstant {
     public static final int IGNORE_LIMIT = 999;
 
     /**
-     * Constant to denote Manual input
+     * Constant to denote Console preference
      */
-    public static final int MANUAL_INPUT = 1;
+    public static final int PREF_CONSOLE = 1;
 
     /**
-     * Constant to denote File input
+     * Constant to denote File preference
      */
-    public static final int FILE_INPUT = 2;
+    public static final int PREF_FILE = 2;
 
     /**
      * Constant to denote File input
@@ -32,10 +32,14 @@ public class KwicConstant {
     public static final String WELCOME_MESSAGE = "Welcome to KWIC Index Generator";
 
     public static final String INPUT_METHOD_MESSAGE = "Please indicate your preference for input:\n" +
-            "Enter '" + MANUAL_INPUT + "' to input lines manually\n" +
-            "Enter '" + FILE_INPUT + "' to input lines through a file";
+            "Enter '" + PREF_CONSOLE + "' to input lines manually\n" +
+            "Enter '" + PREF_FILE + "' to input lines through a file";
 
-    public static final String INVALID_INPUT_METHOD_MESSAGE = "Please enter a valid option:";
+    public static final String OUTPUT_METHOD_MESSAGE = "Please indicate your preference for output:\n" +
+            "Enter '" + PREF_CONSOLE + "' to print generated KWIC index in console\n" +
+            "Enter '" + PREF_FILE + "' to output to text file in the same directory as the program";
+
+    public static final String INVALID_INTEGER_INPUT_MESSAGE = "Please enter a valid option:";
 
     public static final String INPUT_LINES_FILE_NAME_MESSAGE = "Enter input file name for lines:";
 
@@ -50,4 +54,8 @@ public class KwicConstant {
             "(to terminate, enter an empty line):";
 
     public static final String OUTPUT_DISPLAY_MESSAGE = "Generated KWIC index:";
+
+    public static final String OUTPUT_FILE_MESSAGE = "Generating your file...please wait a moment...";
+
+    public static final String OUTPUT_FILE_NAME = "output.txt";
 }

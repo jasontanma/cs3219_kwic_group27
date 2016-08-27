@@ -16,6 +16,7 @@ public class MasterControl {
         Interaction.getInputMethod();
         ArrayList<Line> lines = Interaction.getLines();
         ArrayList<String> ignoredWords = Interaction.getIgnoredWords();
+        Interaction.getOutputMethod();
 
         CircularShift circularShift = new CircularShift(lines);
         IgnoreWordFilterer ignoreWordFilter = new IgnoreWordFilterer(circularShift.circulate());
@@ -23,6 +24,6 @@ public class MasterControl {
         ArrayList<Line> capitalizedFilteredLine = Line.capitalizeLines(filteredLine);
         Alphabetizer alphabetizer = new Alphabetizer();
 
-        Interaction.displayKWICIndex(alphabetizer.sort(capitalizedFilteredLine));
+        Interaction.outputKWICIndex(alphabetizer.sort(capitalizedFilteredLine));
     }
 }

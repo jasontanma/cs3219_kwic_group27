@@ -38,7 +38,7 @@ public class Input {
      *
      * @return          Arraylist of string input read from standard io.
      */
-    public static int getInputMethod() {
+    public static int getIntegerInput() {
         Scanner sc = new Scanner(System.in);
         if(sc.hasNextInt()) {
             return sc.nextInt();

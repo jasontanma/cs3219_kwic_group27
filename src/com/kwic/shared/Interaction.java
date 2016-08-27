@@ -18,6 +18,8 @@ public class Interaction {
 
     private static int inputMethod;
 
+    private static int outputMethod;
+
     public static void main(String[] args) {
         getLines();
         getIgnoredWords();
@@ -31,24 +33,42 @@ public class Interaction {
     }
 
     /**
-     * Display welcome message when user starts the application.
+     * Get input method.
      */
     public static void getInputMethod() {
         Output.displayMessage(INPUT_METHOD_MESSAGE);
-        int userInput = Input.getInputMethod();
-        while(userInput != KwicConstant.MANUAL_INPUT && userInput != KwicConstant.FILE_INPUT) {
-            Output.displayMessage(INVALID_INPUT_METHOD_MESSAGE);
-            userInput = Input.getInputMethod();
-        }
+        int userInput = getValidIntegerInput();
         inputMethod = userInput;
     }
+
+    /**
+     * Get output method
+     */
+    public static void getOutputMethod() {
+        Output.displayMessage(OUTPUT_METHOD_MESSAGE);
+        int userInput = getValidIntegerInput();
+        outputMethod = userInput;
+    }
+
+    /**
+     * Get a valid integer input from user that denotes file or console preferences
+     */
+    public static int getValidIntegerInput() {
+        int userInput = Input.getIntegerInput();
+        while(userInput != KwicConstant.PREF_CONSOLE && userInput != KwicConstant.PREF_FILE) {
+            Output.displayMessage(INVALID_INTEGER_INPUT_MESSAGE);
+            userInput = Input.getIntegerInput();
+        }
+        return userInput;
+    }
+
 
     /**
      * Request the user to enter the lines.
      */
     public static ArrayList<Line> getLines() {
         Scanner sc;
-        if(inputMethod == KwicConstant.MANUAL_INPUT) {
+        if(inputMethod == KwicConstant.PREF_CONSOLE) {
             Output.displayMessage(INPUT_LINES_MESSAGE);
             sc = new Scanner(System.in);
         } else {
@@ -63,7 +83,7 @@ public class Interaction {
      */
     public static ArrayList<String> getIgnoredWords() {
         Scanner sc;
-        if(inputMethod == KwicConstant.MANUAL_INPUT) {
+        if(inputMethod == KwicConstant.PREF_CONSOLE) {
             Output.displayMessage(INPUT_IGNORED_WORDS);
             sc = new Scanner(System.in);
         } else {
@@ -77,9 +97,17 @@ public class Interaction {
     /**
      * Display the KWIC index on output.
      */
-    public static void displayKWICIndex(ArrayList<Line> list) {
-        Output.displayMessage(OUTPUT_DISPLAY_MESSAGE);
-        Output.displayArrayList(list);
+    public static void outputKWICIndex(ArrayList<Line> lineList) {
+
+        ArrayList<String> stringList = convertLineArrayListIntoStringList(lineList);
+
+        if(outputMethod == KwicConstant.PREF_CONSOLE) {
+            Output.displayMessage(OUTPUT_DISPLAY_MESSAGE);
+            Output.displayArrayList(stringList);
+        } else if(outputMethod == KwicConstant.PREF_FILE) {
+            Output.displayMessage(OUTPUT_FILE_MESSAGE);
+            Output.createOutputFile(stringList);
+        }
     }
 
     /**
@@ -100,6 +128,7 @@ public class Interaction {
         try {
             sc = new Scanner(new FileInputStream(fileName));
         } catch (FileNotFoundException e) {
+            Output.displayMessage(e.getMessage());
         }
         return sc;
     }
@@ -152,5 +181,18 @@ public class Interaction {
             lowercasedStringList.add(string.toLowerCase());
         }
         return lowercasedStringList;
+    }
+
+    /**
+     * Convert the arraylist of lines to arraylist of strings.
+     * @param lineList      Arraylist of lines.
+    * @return               ArrayList of string.
+     */
+    private static ArrayList<String> convertLineArrayListIntoStringList(ArrayList<Line> lineList) {
+        ArrayList<String> stringList = new ArrayList<>();
+        for(Line line: lineList) {
+            stringList.add(line.toString());
+        }
+        return stringList;
     }
 }
