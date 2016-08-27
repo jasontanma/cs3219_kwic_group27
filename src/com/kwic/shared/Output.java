@@ -8,13 +8,7 @@ import java.util.ArrayList;
  * Output message on standard output io.
  */
 public class Output {
-
-    public static void main(String[] args) {
-        ArrayList<String> kwicIndex = new ArrayList<>();
-        kwicIndex.add("Fake one la");
-        kwicIndex.add("I also fake rofl");
-    }
-
+    
     /**
      * Display single line message on standard output io.
      * @param message   String of message to be displayed.
