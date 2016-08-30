@@ -1,0 +1,14 @@
+Empty input
+Incorrect command integer
+Singleton
+Singleton + Single ignore word
+No input, only ignore word
+Only input, no ignore word
+Single long line
+A line with all ignore words
+File input
+File output
+Large file
+Case insensitive for ignore word
+Repeated input
+Line of multiple ignore words

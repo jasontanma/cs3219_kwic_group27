@@ -1,0 +1,6 @@
+The inputs here are not for file input.
+
+Input lines and ignore words are seperated by blank line.
+
+Please copy and paste them accordingly.
+
